@@ -1,0 +1,40 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+       - pip install -r dev-requirements.txt
+      # - command
+    #finally:
+      # - command
+      # - command
+  #pre_build:
+    #commands:
+      # - command
+      # - command
+    #finally:
+      # - command
+      # - command
+  build:
+    commands:
+        - pip install  -qq -r requirements.txt -t build/code/
+        - cp code/*.py build/code
+    #finally:
+      # - command
+      # - command
+  post_build:
+    commands:
+        - sam package --template-file template.yaml --output-template-file build/packaged.yaml --s3-bucket yorpg-develop
+        - aws cloudformation deploy --template-file build/packaged.yaml --stack-name yorpg-develop --capabilities CAPABILITY_IAM
+    #finally:
+      # - command
+      # - command
+artifacts:
+  files:
+    - build/
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+#  paths:
+    # - path
+    # - path
