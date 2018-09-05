@@ -30,8 +30,8 @@ phases:
     - ls -al
     - ls -al build/
 
-artifacts:
-  files:
+  #artifacts:
+  #  files:
   #  - build/
   #discard-paths: yes
   #base-directory: location
