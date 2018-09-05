@@ -4,6 +4,8 @@ python:
 # command to install dependencies
 install:
   - pip install -r dev-requirements.txt
-# command to run tests
+  - pip install -r requirements.txt
 script:
-  - pytest
+  - pip install  -qq -r requirements.txt -t build/code/
+  - sam package --template-file template.yaml --output-template-file build/packaged.yaml --s3-bucket yorpg-develop
+  - aws cloudformation deploy --template-file build\packaged.yaml --stack-name yorpg-develop --capabilities CAPABILITY_IAM
