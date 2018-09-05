@@ -19,6 +19,7 @@ phases:
     commands:
     - pip install  -qq -r requirements.txt -t build/code/
     - cp code/*.py build/code
+    - ls -al
     #finally:
     # - command
     # - command
@@ -32,4 +33,4 @@ phases:
 
 artifacts:
   files:
-  - build/*
+  - *
