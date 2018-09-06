@@ -14,7 +14,15 @@ Resources:
     Properties:
       CodeUri: code/
       Handler: app.lambda_handler
-
+    Policies:
+    - AWSLambdaExecute # Managed Policy
+    - Version: '2012-10-17' # Policy Document
+      Statement:
+      - Effect: Allow
+        Action:
+        - s3:GetObject
+        - s3:GetObjectACL
+      Resource: 'arn:aws:s3:::my-bucket/*'
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
           PARAM1: VALUE
