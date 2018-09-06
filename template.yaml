@@ -18,7 +18,7 @@ Resources:
       - AWSLambdaExecute # Managed Policy
       - Version: '2012-10-17'
         Statement:
-        - Sid: HelloWorldFunctionDynamoDbTable
+        - Sid: HelloWorldFunctionDynamoDbTable1
           Effect: Allow
           Action:
           - dynamodb:BatchGetItem
@@ -32,6 +32,15 @@ Resources:
           - dynamodb:UpdateItem
           Resource:
           - !GetAtt Users.Arn
+      - Version: '2012-10-17'
+        Statement:
+        - Sid: HelloWorldFunctionDynamoDbTable2
+          Effect: Allow
+          Action:
+          - dynamodb:DescribeTable
+          - dynamodb:ListTables
+          Resource:
+          - '*'
           #          Resource: arn:aws:dynamodb:us-west-2:629541232157:table/yorpg-develop-Users-WOGHT13CBY6K
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
