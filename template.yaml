@@ -14,24 +14,33 @@ Resources:
     Properties:
       CodeUri: code/
       Handler: app.lambda_handler
-    Policies:
-    - AWSLambdaExecute # Managed Policy
-    - Version: '2012-10-17' # Policy Document
-      Statement:
-      - Effect: Allow
-        Action:
-        - s3:GetObject
-        - s3:GetObjectACL
-      Resource: 'arn:aws:s3:::my-bucket/*'
-      Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
-        Variables:
-          PARAM1: VALUE
-      Events:
-        HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-          Properties:
-            Path: /hello
-            Method: get
+      Policies:
+      - AWSLambdaExecute # Managed Policy
+      - Version: '2012-10-17'
+        Statement:
+        - Sid: HelloWorldFunctionDynamoDbTable
+          Effect: Allow
+          Action:
+          - dynamodb:BatchGetItem
+          - dynamodb:BatchWriteItem
+          - dynamodb:PutItem
+          - dynamodb:DescribeTable
+          - dynamodb:DeleteItem
+          - dynamodb:GetItem
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:UpdateItem
+          Resource: !GetAtt Users.Arn
+          #          Resource: arn:aws:dynamodb:us-west-2:629541232157:table/yorpg-develop-Users-WOGHT13CBY6K
+
+          Variables:
+            PARAM1: VALUE
+        Events:
+          HelloWorld:
+            Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+            Properties:
+              Path: /hello
+              Method: get
   Users:
     Type: AWS::Serverless::SimpleTable
     Properties:
