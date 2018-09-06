@@ -11,8 +11,6 @@ phases:
     commands:
     - sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket yorpg-develop
     - aws cloudformation deploy --template-file packaged.yaml --stack-name yorpg-develop --capabilities CAPABILITY_IAM
-    finally:
-    - ls -al code
 artifacts:
   files:
-  - 'code/'
+  - 'code/*'
