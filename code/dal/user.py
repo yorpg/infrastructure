@@ -9,7 +9,7 @@ class User(Model):
 
     class Meta:
         table_name = "Users"
-        host = "http://172.17.0.2:8000"
+        # host = "http://172.17.0.2:8000"
 
     id = attributes.UnicodeAttribute(hash_key=True)
     email = attributes.UnicodeAttribute()
