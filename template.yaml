@@ -35,12 +35,12 @@ Resources:
 
           Variables:
             PARAM1: VALUE
-        Events:
-          HelloWorld:
-            Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-            Properties:
-              Path: /hello
-              Method: get
+          Events:
+            HelloWorld:
+              Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+              Properties:
+                Path: /hello
+                Method: get
   Users:
     Type: AWS::Serverless::SimpleTable
     Properties:
