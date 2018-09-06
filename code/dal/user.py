@@ -1,16 +1,14 @@
 from pynamodb.models import Model
 from pynamodb import attributes
+from .aws_config_mixin import AwsMeta
 
 
 class User(Model):
     """
     A DynamoDB User
     """
+    Meta = AwsMeta.meta('user')
 
-    class Meta:
-        table_name = "Users"
-        # host = "http://172.17.0.2:8000"
-        region = 'us-west-2'
     id = attributes.UnicodeAttribute(hash_key=True)
     email = attributes.UnicodeAttribute()
     first_name = attributes.UnicodeAttribute(null=True)

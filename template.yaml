@@ -44,7 +44,7 @@ Resources:
           #          Resource: arn:aws:dynamodb:us-west-2:629541232157:table/yorpg-develop-Users-WOGHT13CBY6K
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
-          PARAM1: VALUE
+          USERS_TABLE: !Ref Users
       Events:
         HelloWorld:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
