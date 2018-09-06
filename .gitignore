@@ -2,7 +2,9 @@
 # Created by https://www.gitignore.io/api/osx,linux,python,windows,pycharm,visualstudiocode
 code/*
 !code/dal
-!code/*.py
+!code/app.py
+*.db
+
 ### Linux ###
 *~
 
