@@ -1,6 +1,12 @@
 import json
+from dal import User
+import boto3
 
-import requests
+user = User('1231')
+user.first_name = 'John'
+user.last_name_name = 'Denver'
+user.email = "djohn@company.org"
+user.save()
 
 
 def lambda_handler(event, context):
@@ -70,18 +76,9 @@ def lambda_handler(event, context):
         # api-gateway-simple-proxy-for-lambda-output-format
         https: // docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
     """
-
-    try:
-        ip = requests.get("http://checkip.amazonaws.com/")
-    except requests.RequestException as e:
-        # Send some context about this error to Lambda Logs
-        print(e)
-
-        raise e
-
     return {
         "statusCode": 200,
         "body": json.dumps(
-            {"message": "hi! world", "location": event}
+            {"message": event, "table": user.id}
         ),
     }

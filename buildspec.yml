@@ -4,33 +4,20 @@ phases:
   install:
     commands:
     - pip install -r dev-requirements.txt
-    # - command
-    #finally:
-    # - command
-    # - command
-    #pre_build:
-    #commands:
-    # - command
-    # - command
-    #finally:
-    # - command
-    # - command
   build:
     commands:
     - pip install  -qq -r requirements.txt -t build/code/
-    - cp code/*.py build/code
-    - ls -al
-    #finally:
-    # - command
-    # - command
+    - cp code/* build/code
+    - cp template.yaml build/
+
   post_build:
     commands:
-    - sam package --template-file template.yaml --output-template-file build/packaged.yaml --s3-bucket yorpg-develop
-    - aws cloudformation deploy --template-file build/packaged.yaml --stack-name yorpg-develop --capabilities CAPABILITY_IAM
+    - cd build/
+    - sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket yorpg-develop
+    - aws cloudformation deploy --template-file packaged.yaml --stack-name yorpg-develop --capabilities CAPABILITY_IAM
     finally:
     - ls -al
     - ls -al build/
-
 artifacts:
   files:
   - 'build'

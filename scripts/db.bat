@@ -1,0 +1,1 @@
+ docker run -v "C:\Users\simon\yorpg\infrastructure\scripts":/dynamodb_local_db -p 8000:8000 cnadiminti/dynamodb-local:latest
