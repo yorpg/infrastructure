@@ -13,9 +13,13 @@ class AwsMeta(object):
 
         class Meta:
             table_name = cls.table_name(src_name)
+            print(table_name)
 
         if Meta.table_name == src_name:  # local
             Meta.host = "http://172.17.0.2:8000"
+            print(Meta.host)
         else:
             Meta.region = 'us-west-2'
+            print(Meta.region)
+
         return Meta

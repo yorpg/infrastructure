@@ -1,6 +1,5 @@
 import json
 from dal import User
-import boto3
 
 user = User('1231')
 user.first_name = 'John'
