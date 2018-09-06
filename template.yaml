@@ -30,17 +30,18 @@ Resources:
           - dynamodb:Scan
           - dynamodb:Query
           - dynamodb:UpdateItem
-          Resource: !GetAtt Users.Arn
+          Resource:
+          - !GetAtt Users.Arn
           #          Resource: arn:aws:dynamodb:us-west-2:629541232157:table/yorpg-develop-Users-WOGHT13CBY6K
-        Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
-          Variables:
-            PARAM1: VALUE
-          Events:
-            HelloWorld:
-              Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-              Properties:
-                Path: /hello
-                Method: get
+      Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
+        Variables:
+          PARAM1: VALUE
+        Events:
+          HelloWorld:
+            Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+            Properties:
+              Path: /hello
+              Method: get
   Users:
     Type: AWS::Serverless::SimpleTable
     Properties:
